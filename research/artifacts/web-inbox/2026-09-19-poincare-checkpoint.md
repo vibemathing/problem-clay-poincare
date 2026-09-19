@@ -24,6 +24,26 @@ ROOT_STATUS: OPEN
 6. The exact receipt has been persisted as
    `research/artifacts/candidates/lean/PoincareVanKampenGroupoidColimit.verification.md`.
 
+## Additional trusted support — two-open intersection family
+
+Exact-pin verifier branch `tmp-poincare-three-open-cover-target-pin-20260919`
+at commit `e63cc008dbb51286764585e56bb20cf1a721a7c9` passed workflow
+run `35452934173`, job `105923129258`.
+
+The verified candidate defines the finite cover family `{U, V, U ⊓ V}` and
+proves binary-intersection closure, pointwise covering when `U ⊔ V = ⊤`,
+and closure under every nonempty finite intersection.  The latter is exactly
+the combinatorial `hfinite_intersections` shape required by the audited full
+groupoid Van Kampen theorem.
+
+`#print axioms` for all three checked lemmas reported exactly
+`[propext, Classical.choice, Quot.sound]`; no `sorryAx` appeared.
+
+Persisted artifacts:
+
+- `research/artifacts/candidates/lean/PoincareTwoOpenIntersectionFamily.lean`
+- `research/artifacts/candidates/lean/PoincareTwoOpenIntersectionFamily.verification.md`
+
 ## Statement boundary of the new theorem
 
 The audited theorem identifies the canonical colimit of the fundamental
@@ -36,24 +56,19 @@ and it does not assume the colimit conclusion.
 
 ## Active downstream bridge
 
-The active exact-pin verifier candidate is now
-`vibemathing/vibe-mathing-cn-public@55bf5f799958e7c56eaa7843c6db976e375205b3`.
+The active faithful-leg verifier candidate is now
+`vibemathing/vibe-mathing-cn-public@8967293aeef81fb4f1d8a712e7587d868b3c701b`.
+It avoids direct projection of a bundled `Grpd` functor equality: the
+colimit-factor composite is first transferred a `Faithful` instance using
+`hc.fac`, after which its `map_injective` is applied. Its exact-pin run
+`35453120857` is still in progress, so the faithful-leg theorem is not yet
+trusted.
 
-It isolates two no-placeholder downstream statements:
-
-- if a diagram has a colimit whose apex has subsingleton hom-sets and the same
-  diagram has a test cocone whose chosen leg is faithful, then the corresponding
-  diagram groupoid has subsingleton hom-sets;
-- applying that bridge to the audited full groupoid Van Kampen colimit transfers
-  ambient `SimplyConnectedSpace` to a path-connected cover member once such a
-  faithful test-cocone leg is supplied.
-
-The earlier provisional based-transport/two-cover experiment was removed from
-the verifier harness because its failed elaboration generated downstream
-`sorryAx` noise.  The active candidate itself contains no `sorry` or
-`admit`.  Its exact-pin workflow run `35414071269` is still in progress at
-this checkpoint, so these two new statements are not yet listed as trusted
-delta.
+A separate lightweight based-transport probe is active on branch
+`tmp-poincare-based-transport-target-pin-20260919`, commit
+`b57d5e381d14c7e2bdaf534bb4e947526b9788cb`, workflow run
+`35453211777`.  This isolates the prospective faithful functor from a
+connected groupoid to the single-object category of a vertex group.
 
 ## Next connected-sum obligations
 
@@ -91,8 +106,16 @@ the current work does not import that result as an axiom.
 - successful audited harness commit:
   `e594df5e800fe18bd9ff28e31d27ebada7eb5f56`
 - active faithful-leg candidate commit:
-  `55bf5f799958e7c56eaa7843c6db976e375205b3`
-- active faithful-leg exact-pin workflow run: `35414071269`
+  `8967293aeef81fb4f1d8a712e7587d868b3c701b`
+- active faithful-leg exact-pin workflow run: `35453120857`
+- active based-transport branch:
+  `tmp-poincare-based-transport-target-pin-20260919`
+- active based-transport commit:
+  `b57d5e381d14c7e2bdaf534bb4e947526b9788cb`
+- active based-transport run: `35453211777`
+- trusted three-open-family verifier commit:
+  `e63cc008dbb51286764585e56bb20cf1a721a7c9`
+- trusted three-open-family run/job: `35452934173` / `105923129258`
 - Lean: `4.33.0`
 - Mathlib: `db584cd6d46c92f209a44c0f1c829460d327499d`
 
