@@ -1,55 +1,54 @@
-# Verification note — faithful-leg Van Kampen bridge
+# Verification note — Van Kampen faithful-leg bridge
 
-Status: candidate-only exact-pin kernel-checked downstream theorem. This is not an admitted Result and does not prove the Poincare conjecture.
+Status: candidate code with successful exact-pin kernel verification. This is
+not a proof of the Poincare conjecture.
 
 ## Environment
 
-- full Van Kampen overlay source: `hanwenzhu/mathlib4@9a19745bf2565abbbf56bb38c91bcd26c4c53b49`
 - verifier repository: `vibemathing/vibe-mathing-cn-public`
-- verifier branch: `tmp-poincare-vankampen-target-pin-20260917`
+- verifier PR: #13
 - verifier commit: `8967293aeef81fb4f1d8a712e7587d868b3c701b`
-- workflow run: `35453120857`
-- job: `105923623245`
+- exact-pin workflow run: `35453120857`
 - Lean: `4.33.0`
 - Mathlib: `db584cd6d46c92f209a44c0f1c829460d327499d`
-- conclusion: success
+- overlaid Van Kampen source:
+  `hanwenzhu/mathlib4@9a19745bf2565abbbf56bb38c91bcd26c4c53b49`
 
-The same run rebuilt the complete overlaid
-`Mathlib.AlgebraicTopology.FundamentalGroupoid.VanKampen.IsColimit`
-target successfully: 8737 jobs.
+The workflow rebuilt the full Van Kampen target:
 
-## Checked statements
+```text
+[8737/8737] Built Mathlib.AlgebraicTopology.FundamentalGroupoid.VanKampen.IsColimit
+Build completed successfully (8737 jobs).
+```
 
-`subsingleton_hom_of_isColimit_faithful_leg` proves the abstract categorical
-step: if a colimit apex has subsingleton hom-sets and another cocone has a
-faithful chosen leg, then the corresponding diagram object's hom-sets are
-subsingletons.
-
-`simplyConnectedSpace_of_vankampen_faithful_leg` applies that result to the
-audited full groupoid Van Kampen colimit.  Under ambient
-`SimplyConnectedSpace X`, a path-connected cover member becomes simply
-connected as soon as a faithful test-cocone leg for that member is provided.
-
-The theorem does not assume that the cover member is already simply connected.
+It then compiled the candidate file containing
+`subsingleton_hom_of_isColimit_faithful_leg` and
+`simplyConnectedSpace_of_vankampen_faithful_leg`.
 
 ## Axiom audit
 
-The successful workflow reported:
+`#print axioms` reported exactly:
 
 ```text
 'subsingleton_hom_of_isColimit_faithful_leg' depends on axioms:
-[propext, Classical.choice, Quot.sound]
-
+  [propext, Classical.choice, Quot.sound]
 'simplyConnectedSpace_of_vankampen_faithful_leg' depends on axioms:
-[propext, Classical.choice, Quot.sound]
+  [propext, Classical.choice, Quot.sound]
 ```
 
-No `sorryAx` appeared.  The same run also repeated the standard-axiom audit
-for the full Van Kampen declarations.
+No `sorryAx` appears.
 
-## Claim boundary
+## Mathematical boundary
 
-The remaining topology obligation is now concentrated on constructing an
-actual faithful test cocone for the three-open family `{U,V,U∩V}`, then
-connecting that abstract cover to the connected-sum collar geometry.  The root
-Poincare theorem remains open.
+The first theorem is purely categorical: a thin colimit apex transfers
+thinness back to a diagram object if that object has a faithful leg into some
+test cocone.
+
+The second theorem applies the audited full groupoid Seifert--van Kampen
+colimit to conclude `SimplyConnectedSpace U` for a path-connected cover
+member `U`, provided a faithful test-cocone leg at `U` is supplied.
+
+The remaining nontrivial obligation is therefore the construction of such a
+faithful cocone for the connected-sum cover (or an equivalent injectivity
+theorem for the factor fundamental groupoid). No such assumption is hidden in
+these two theorems.
