@@ -36,19 +36,24 @@ and it does not assume the colimit conclusion.
 
 ## Active downstream bridge
 
-A new exact-pin verifier candidate has been committed at
-`vibemathing/vibe-mathing-cn-public@437ff31c9eea9a53e91fae76346e2431d2e4a832`.
+The active exact-pin verifier candidate is now
+`vibemathing/vibe-mathing-cn-public@55bf5f799958e7c56eaa7843c6db976e375205b3`.
 
-The candidate theorem states the abstract categorical implication needed by the
-connected-sum route:
+It isolates two no-placeholder downstream statements:
 
-- if a diagram has a colimit whose apex has subsingleton hom-sets; and
-- the same diagram has a test cocone whose chosen leg is faithful;
+- if a diagram has a colimit whose apex has subsingleton hom-sets and the same
+  diagram has a test cocone whose chosen leg is faithful, then the corresponding
+  diagram groupoid has subsingleton hom-sets;
+- applying that bridge to the audited full groupoid Van Kampen colimit transfers
+  ambient `SimplyConnectedSpace` to a path-connected cover member once such a
+  faithful test-cocone leg is supplied.
 
-then the corresponding diagram groupoid has subsingleton hom-sets.
-
-Its workflow is still pending at the time of this checkpoint, so it is not yet
-listed as trusted delta.
+The earlier provisional based-transport/two-cover experiment was removed from
+the verifier harness because its failed elaboration generated downstream
+`sorryAx` noise.  The active candidate itself contains no `sorry` or
+`admit`.  Its exact-pin workflow run `35414071269` is still in progress at
+this checkpoint, so these two new statements are not yet listed as trusted
+delta.
 
 ## Next connected-sum obligations
 
@@ -86,7 +91,8 @@ the current work does not import that result as an axiom.
 - successful audited harness commit:
   `e594df5e800fe18bd9ff28e31d27ebada7eb5f56`
 - active faithful-leg candidate commit:
-  `437ff31c9eea9a53e91fae76346e2431d2e4a832`
+  `55bf5f799958e7c56eaa7843c6db976e375205b3`
+- active faithful-leg exact-pin workflow run: `35414071269`
 - Lean: `4.33.0`
 - Mathlib: `db584cd6d46c92f209a44c0f1c829460d327499d`
 
