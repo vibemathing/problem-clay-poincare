@@ -105,17 +105,12 @@ the current work does not import that result as an axiom.
   `tmp-poincare-vankampen-target-pin-20260917`
 - successful audited harness commit:
   `e594df5e800fe18bd9ff28e31d27ebada7eb5f56`
-- active faithful-leg candidate commit:
+- verified faithful-leg bridge commit:
   `8967293aeef81fb4f1d8a712e7587d868b3c701b`
-- active faithful-leg exact-pin workflow run: `35453120857`
-- active based-transport branch:
-  `tmp-poincare-based-transport-target-pin-20260919`
-- active based-transport commit:
-  `b57d5e381d14c7e2bdaf534bb4e947526b9788cb`
-- active based-transport run: `35453211777`
-- trusted three-open-family verifier commit:
-  `e63cc008dbb51286764585e56bb20cf1a721a7c9`
-- trusted three-open-family run/job: `35452934173` / `105923129258`
+- verified faithful-leg workflow run: `35453120857`
+- active pushout-kernel candidate:
+  `5bc8990b55f3c7d028ecc07b68a3c05cf20d353f`
+- active pushout-kernel workflow run: `35463778772`
 - Lean: `4.33.0`
 - Mathlib: `db584cd6d46c92f209a44c0f1c829460d327499d`
 
