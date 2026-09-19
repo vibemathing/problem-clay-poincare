@@ -122,3 +122,36 @@ the current work does not import that result as an axiom.
 CLAIM_BOUNDARY: The root three-dimensional Poincare theorem is not proved.
 The newly trusted claim is limited to the exact-pin full groupoid Van Kampen
 colimit theorem and its recorded standard axiom dependencies.
+
+
+## Trusted delta — faithful leg and based transport
+
+After the previous checkpoint, two additional exact-pin paths closed:
+
+1. Faithful-leg Van Kampen bridge:
+   - verifier commit: `8967293aeef81fb4f1d8a712e7587d868b3c701b`
+   - run/job: `35453120857` / `105923623245`
+   - full Van Kampen replay again completed all 8737 jobs
+   - `subsingleton_hom_of_isColimit_faithful_leg` and
+     `simplyConnectedSpace_of_vankampen_faithful_leg` both audit to exactly
+     `[propext, Classical.choice, Quot.sound]`.
+   - persisted as
+     `PoincareVanKampenFaithfulLeg.lean` and its verification note.
+
+2. Based groupoid transport:
+   - generic verified commit/run/job:
+     `b57d5e381d14c7e2bdaf534bb4e947526b9788cb` /
+     `35453211777` / `105923858271`
+   - fundamental-groupoid specialization verified commit/run/job:
+     `3245fdc98479d16f4b2fe450be8a8b626c84346a` /
+     `35453436262` / `105924454754`
+   - both generic and specialized map-injectivity theorems audit to exactly
+     `[propext, Classical.choice, Quot.sound]`.
+   - persisted in `PoincareBasedGroupoidTransport.lean` and its verification
+     note.
+
+The active next probe is commit
+`4a84b648ca66cd4e0a5d47ef9f333fdbad160e73`, run `35453700613`, which
+isolates the pure groupoid lemma that a compatible based transport from a thin
+source groupoid is trivial in the target vertex group.  This is the algebraic
+core of making the U-leg trivial on a simply connected overlap.
