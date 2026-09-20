@@ -150,3 +150,27 @@ The active next probe is commit
 isolates the pure groupoid lemma that a compatible based transport from a thin
 source groupoid is trivial in the target vertex group.  This is the algebraic
 core of making the U-leg trivial on a simply connected overlap.
+
+## Additional trusted topology delta — 2026-09-21
+
+1. The compatible based-transport extension is exact-pin verified at
+   `vibemathing/vibe-mathing-cn-public@b6319ac36488bca6e130e45ab6de46528fa11025`,
+   workflow run `35530751563`.  The declarations
+   `extendBaseArrows_obj`, `basedTransportMap_map_extend`, and
+   `basedTransportMap_mapEnd_extend` each audit to exactly
+   `[propext, Classical.choice, Quot.sound]`.
+2. The subordinate two-open cover kernel is exact-pin verified at
+   `35c7d5978e5e0db5477168fc4cfcc24e50dd435b`, run `35530929438`.
+   Both `subordinateTwoCover_covers` and
+   `subordinateTwoCover_finiteIntersections` audit to exactly
+   `[propext, Classical.choice, Quot.sound]`.
+3. The active strict two-open pushout-cocone candidate is commit
+   `0cc0e45eb878b66961ae769dc53572cd1d9cec7a`, run `35531057633`.
+   The previous run reached this file for the first time; the only first-order
+   elaboration blocker was ambiguity of `U ⊓ V` in type-coercion contexts,
+   now repaired by explicit `: Opens X` annotations.
+
+The next topology milestone is to verify the strict span cocone and its faithful
+left/right legs, then extend that cocone to the already verified
+`subordinateTwoCover` family and combine it with the trusted full groupoid Van
+Kampen faithful-leg theorem.
